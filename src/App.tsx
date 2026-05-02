@@ -1,20 +1,14 @@
 import "./App.css";
-import { PathCard } from "./Card/pathCard";
-import careerPathData from "./careerPathData";
+import { CardsSection } from "./Card/Cards";
+import IntroSection from "./Intro/IntroSection";
 
-function App() {
-	const mappedPathCards = careerPathData.map((card) => (
-		<PathCard
-			firstName={card.firstName}
-			lastName={card.lastName}
-			currentRole={card.currentRole}
-			previousRoles={card.previousRoles}
-			statement={card.statement}
-			pathTags={card.pathTags}
-		/>
-	));
-
-	return mappedPathCards;
-}
+const App = () => {
+	return (
+		<>
+			<IntroSection />
+			<CardsSection />
+		</>
+	);
+};
 
 export default App;

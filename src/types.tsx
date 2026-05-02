@@ -15,8 +15,11 @@ export interface PreviousRoles extends Role {
 export type CareerPath = {
 	firstName: string;
 	lastName: string;
-	statement: string;
-	currentRole?: Role;
+	id: string;
+	currentRole: Role;
+	statement?: string;
 	previousRoles?: PreviousRoles[];
 	pathTags?: string[];
 };
+
+export type PathCard = Omit<CareerPath, "id">;
