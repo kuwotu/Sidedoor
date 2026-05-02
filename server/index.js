@@ -19,12 +19,24 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/api/career_path", (req, res) => {
-	db.any("SELECT * FROM career_path ORDER BY id ASC")
+	db.any(
+		`SELECT 
+    career_path.*,
+    roles.job_title,
+    roles.start_date,
+    roles.end_date,
+    EXTRACT(YEAR FROM AGE(COALESCE(roles.end_date, CURRENT_DATE), roles.start_date)) AS years_in_role
+FROM career_path
+LEFT JOIN roles ON roles.career_path_id = career_path.id
+ORDER BY career_path.id ASC;`,
+	)
 		.then((data) => {
+			console.log(data);
 			res.json(data);
 		})
 		.catch((error) => {
 			console.log("ERROR:", error);
+			res.status(500).json({ error: "Database error" });
 		});
 });
 

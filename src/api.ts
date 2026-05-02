@@ -5,33 +5,62 @@ type fetchCareerResponse = {
 	id: string;
 	last_name: string;
 	user_statement: string;
+	job_title: string;
+	start_date: Date;
+	end_date: Date;
+	years_in_role: number;
 };
 
-const mapData = (data: fetchCareerResponse[]): CareerPath[] => {
-	return data.map((careerEntry: fetchCareerResponse) => {
-		return {
-			firstName: careerEntry.first_name,
-			lastName: careerEntry.last_name,
-			id: careerEntry.id,
-			statement: careerEntry.user_statement,
-			currentRole: {
-				title: "Whatever",
-				yearsInRole: 5,
-			},
-		};
-	});
+const dataReducer = (
+	accumulator: CareerPath[],
+	currentItem: fetchCareerResponse,
+) => {
+	const existingObject = accumulator.find(
+		(element) => element.id == currentItem.id,
+	);
+
+	if (!existingObject) {
+		accumulator.push({
+			firstName: currentItem.first_name,
+			lastName: currentItem.last_name,
+			id: currentItem.id,
+			statement: currentItem.user_statement,
+			jobs: currentItem.job_title
+				? [
+						{
+							jobTitle: currentItem.job_title,
+							startDate: currentItem.start_date,
+							endDate: currentItem.end_date,
+							yearsInRole: currentItem.years_in_role,
+						},
+					]
+				: [],
+		});
+	} else {
+		existingObject.jobs.push({
+			jobTitle: currentItem.job_title,
+			startDate: currentItem.start_date,
+			endDate: currentItem.end_date,
+			yearsInRole: currentItem.years_in_role,
+		});
+	}
+
+	return accumulator;
 };
 
-export const getCareerPath = async (): Promise<CareerPath[]> => {
+const mapCareerEntires = (data: fetchCareerResponse[]): CareerPath[] =>
+	data.reduce(dataReducer, []);
+
+export const getCareerPath = async (): Promise<CareerPath[] | undefined> => {
 	try {
 		const response = await fetch("http://localhost:3000/api/career_path");
 		if (!response.ok) {
 			throw new Error(`HTTP error status: ${response.status}`);
 		}
 		const data: fetchCareerResponse[] = await response.json();
-		return mapData(data);
+		return mapCareerEntires(data);
 	} catch (error) {
 		console.error("Error fetching career paths:", error);
-		throw error;
+		return undefined;
 	}
 };

@@ -1,5 +1,5 @@
 import "./App.css";
-import { CardsSection } from "./Card/Cards";
+import { CardsSection } from "./Card/CardsSection";
 import IntroSection from "./Intro/IntroSection";
 
 const App = () => {

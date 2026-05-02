@@ -6,31 +6,40 @@ import { PathCard } from "./PathCard";
 
 const Cards = () => {
 	const [careerPathData, setCareerPathData] = useState<CareerPath[]>([]);
+	const [isError, setError] = useState<boolean>(false);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const careerPaths = await getCareerPath();
-			setCareerPathData(careerPaths);
+			if (careerPaths == undefined) {
+				setError(true);
+			} else {
+				setCareerPathData(careerPaths);
+			}
+			setIsLoading(false);
 		};
 
 		fetchData();
 	}, []);
 
-	{
-		const mappedPathCards = careerPathData.map((card) => (
-			<PathCard
-				firstName={card.firstName}
-				lastName={card.lastName}
-				currentRole={card.currentRole}
-				previousRoles={card.previousRoles}
-				statement={card.statement}
-				pathTags={card.pathTags}
-				key={card.id}
-			/>
-		));
+	if (isLoading) return <p>...Loading</p>;
+	if (isError) return <p>Error</p>;
 
-		return mappedPathCards;
-	}
+	return (
+		<>
+			{careerPathData.map((card) => (
+				<PathCard
+					firstName={card.firstName}
+					lastName={card.lastName}
+					jobs={card.jobs}
+					statement={card.statement}
+					pathTags={card.pathTags}
+					key={card.id}
+				/>
+			))}
+		</>
+	);
 };
 
 export const CardsSection = () => {

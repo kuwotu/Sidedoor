@@ -1,24 +1,19 @@
 export interface Role {
-	title: string;
+	jobTitle: string;
 	yearsInRole: number;
 }
 
-export type RoleDates = {
-	start: string;
-	end: string;
-};
-
-export interface PreviousRoles extends Role {
-	dates: RoleDates[];
+export interface RolesHistory extends Role {
+	startDate: Date;
+	endDate: Date;
 }
 
 export type CareerPath = {
 	firstName: string;
 	lastName: string;
 	id: string;
-	currentRole: Role;
 	statement?: string;
-	previousRoles?: PreviousRoles[];
+	jobs: RolesHistory[];
 	pathTags?: string[];
 };
 
