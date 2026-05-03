@@ -34,8 +34,10 @@ export function PathCard({
 				{currentRole.length > 0 && (
 					<CurrentRoleInfo>
 						<>
-							<p>{currentRole[0].jobTitle}</p>
-							<p> -{currentRole[0].yearsInRole} years in the role</p>
+							<p>
+								{currentRole[0].jobTitle} - {currentRole[0].yearsInRole} years
+								in the role
+							</p>
 						</>
 					</CurrentRoleInfo>
 				)}
