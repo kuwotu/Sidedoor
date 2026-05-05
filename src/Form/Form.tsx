@@ -19,7 +19,6 @@ export const Form = ({ setIsFormModalOpen }: FormProp) => {
 		const startDateMonthAsNum = monthNumberFromString(startDateMonth);
 		const endDateMonthAsNum = monthNumberFromString(endDateMonth);
 
-		//combine these into a date before sending data off
 		const firstName = formData.get("firstName");
 		const lastName = formData.get("lastName");
 		const statement = formData.get("statement");
