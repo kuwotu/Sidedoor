@@ -1,3 +1,5 @@
+import { useState, type Dispatch, type SetStateAction } from "react";
+import { Form } from "../Form/Form";
 import {
 	IntroStats,
 	IntroStatsDiv,
@@ -9,10 +11,12 @@ import {
 	StyledHookline,
 	IntroTextContainer,
 } from "./styles";
+import { Modal } from "../Modal/Modal";
 
-const handleShareStory = () => {
-	console.log("share story");
+type ShareStoryProp = {
+	setIsFormModalOpen: Dispatch<SetStateAction<boolean>>;
 };
+
 const handleBrowseStory = () => {
 	console.log("share story");
 };
@@ -28,10 +32,12 @@ const Intro = () => {
 		</IntroTextContainer>
 	);
 };
-const StoryButtons = () => {
+const StoryButtons = ({ setIsFormModalOpen }: ShareStoryProp) => {
 	return (
 		<ButtonsContainer>
-			<StyledButton onClick={handleShareStory}>Share your story</StyledButton>
+			<StyledButton onClick={() => setIsFormModalOpen(true)}>
+				Share your story
+			</StyledButton>
 			<StyledButton onClick={handleBrowseStory}>Browse stories</StyledButton>
 		</ButtonsContainer>
 	);
@@ -57,10 +63,14 @@ const StoryStats = () => {
 };
 
 const StorySection = () => {
+	const [isFormModalOpen, setIsFormModalOpen] = useState<boolean>(false);
 	return (
 		<StorySectionContainer>
 			<StoryStats />
-			<StoryButtons />
+			<StoryButtons setIsFormModalOpen={setIsFormModalOpen} />
+			<Modal isOpen={isFormModalOpen} onClose={setIsFormModalOpen}>
+				<Form setIsFormModalOpen={setIsFormModalOpen} />
+			</Modal>
 		</StorySectionContainer>
 	);
 };

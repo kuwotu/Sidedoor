@@ -4,21 +4,21 @@ const careerPathData: CareerPath[] = [
 	{
 		firstName: "Kevwe",
 		lastName: "Uwotu",
-		currentRole: { title: "Software Engineer", yearsInRole: 4 },
+		currentRole: { jobTitle: "Software Engineer", yearsInRole: 4 },
 		id: "1",
-		previousRoles: [
+		jobs: [
 			{
-				title: "Software Engineer",
+				jobTitle: "Software Engineer",
 				yearsInRole: 4,
 				dates: [{ start: "20-01-22", end: "20-03-26" }],
 			},
 			{
-				title: "Receptionist",
+				jobTitle: "Receptionist",
 				yearsInRole: 2,
 				dates: [{ start: "20-01-19", end: "20-06-22" }],
 			},
 			{
-				title: "Recruiter",
+				jobTitle: "Recruiter",
 				yearsInRole: 4,
 				dates: [{ start: "20-01-17", end: "20-06-19" }],
 			},
@@ -29,21 +29,21 @@ const careerPathData: CareerPath[] = [
 	{
 		firstName: "Kevwe",
 		lastName: "Uwotu",
-		currentRole: { title: "Software Engineer", yearsInRole: 4 },
+		currentRole: { jobTitle: "Software Engineer", yearsInRole: 4 },
 		id: "2",
-		previousRoles: [
+		jobs: [
 			{
-				title: "Software Engineer",
+				jobTitle: "Software Engineer",
 				yearsInRole: 4,
 				dates: [{ start: "20-01-22", end: "20-03-26" }],
 			},
 			{
-				title: "Receptionist",
+				jobTitle: "Receptionist",
 				yearsInRole: 2,
 				dates: [{ start: "20-01-19", end: "20-06-22" }],
 			},
 			{
-				title: "Recruiter",
+				jobTitle: "Recruiter",
 				yearsInRole: 4,
 				dates: [{ start: "20-01-17", end: "20-06-19" }],
 			},
@@ -55,20 +55,20 @@ const careerPathData: CareerPath[] = [
 		firstName: "Kevwe",
 		lastName: "Uwotu",
 		id: "3",
-		currentRole: { title: "Software Engineer", yearsInRole: 4 },
-		previousRoles: [
+		currentRole: { jobTitle: "Software Engineer", yearsInRole: 4 },
+		jobs: [
 			{
-				title: "Software Engineer",
+				jobTitle: "Software Engineer",
 				yearsInRole: 4,
 				dates: [{ start: "20-01-22", end: "20-03-26" }],
 			},
 			{
-				title: "Receptionist",
+				jobTitle: "Receptionist",
 				yearsInRole: 2,
 				dates: [{ start: "20-01-19", end: "20-06-22" }],
 			},
 			{
-				title: "Recruiter",
+				jobTitle: "Recruiter",
 				yearsInRole: 4,
 				dates: [{ start: "20-01-17", end: "20-06-19" }],
 			},
