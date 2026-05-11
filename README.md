@@ -71,3 +71,5 @@ export default defineConfig([
   },
 ])
 ```
+
+Entity Relationship Diagram <img width="687" height="404" alt="Screenshot 2026-05-11 at 19 27 06" src="https://github.com/user-attachments/assets/a7ad3caa-c93a-4009-9773-fcebfc7a6326" />
