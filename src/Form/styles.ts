@@ -7,3 +7,13 @@ export const StyledForm = styled.form`
 	justify-content: space-evenly;
 	height: 100%;
 `;
+
+export const StyledDateContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+`;
+export const StyledDateDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
