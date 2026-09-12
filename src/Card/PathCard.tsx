@@ -1,3 +1,4 @@
+import { monthsOrYears } from "../helpers/helper";
 import type { PathCard } from "../types";
 import {
 	PathCardContainer,
@@ -9,16 +10,12 @@ import {
 } from "./styles";
 
 export function PathCard({
-	firstName,
-	lastName,
+	displayName,
 	jobs,
-	statement,
+	careerStory,
 	pathTags,
 }: PathCard) {
-	const initial = lastName.charAt(0);
-
-	const currentRole = jobs.filter((job) => job.endDate == null);
-	// console.log("currentRole", currentRole);
+	const currentRole = jobs.filter((job) => job.isCurrent == true);
 	const sortJobsByDate = jobs.sort(
 		(a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
 	);
@@ -27,30 +24,31 @@ export function PathCard({
 		<PathCardContainer>
 			<CardProfile>
 				<>
-					<p>
-						{firstName}. {initial}
-					</p>
+					<p>{displayName}</p>
 				</>
 				{currentRole.length > 0 && (
 					<CurrentRoleInfo>
 						<>
 							<p>
-								{currentRole[0].jobTitle} - {currentRole[0].yearsInRole} years
-								in the role
+								{currentRole[0].jobTitle} -{" "}
+								{monthsOrYears(currentRole[0].yearsInRole)} in the role
 							</p>
 						</>
 					</CurrentRoleInfo>
 				)}
 			</CardProfile>
 			<CardJourneyContainer>
-				{sortJobsByDate?.map((role) => (
-					<CardJourney>
-						<p>{role.jobTitle}</p>
-						<p>({role.yearsInRole} years)</p>
-					</CardJourney>
-				))}
+				{sortJobsByDate?.map((role) => {
+					console.log(`${role.jobTitle}`, role.yearsInRole);
+					return (
+						<CardJourney>
+							<p>{role.jobTitle}</p>
+							<p>({monthsOrYears(role.yearsInRole)})</p>
+						</CardJourney>
+					);
+				})}
 			</CardJourneyContainer>
-			{statement && <p>"{statement}"</p>}
+			{careerStory && <p>"{careerStory.statement}"</p>}
 			<StyledTags>
 				{pathTags?.map((tag) => (
 					<p>{tag}</p>
