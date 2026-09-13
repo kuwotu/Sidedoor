@@ -1,6 +1,11 @@
+type TimeInRole = {
+	years: number;
+	months: number;
+};
+
 export interface Role {
 	jobTitle: string;
-	yearsInRole: number;
+	timeInRole: TimeInRole;
 	isCurrent: boolean;
 }
 

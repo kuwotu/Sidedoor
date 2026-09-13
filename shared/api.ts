@@ -1,4 +1,4 @@
-import { calculateYearsInRole } from "../src/helpers/helper";
+import { yearsAndMonthsInRole } from "../src/helpers/helpers";
 import type { CareerPath, CareerStory } from "../src/types";
 
 type JobHistory = {
@@ -34,7 +34,7 @@ const mapCareerEntires = (data: careerStoriesResponse[]): CareerPath[] =>
 			startDate: jobItem.start_date,
 			endDate: jobItem.end_date,
 			isCurrent: jobItem.is_current,
-			yearsInRole: calculateYearsInRole(jobItem.start_date, jobItem.end_date),
+			timeInRole: yearsAndMonthsInRole(jobItem.start_date, jobItem.end_date),
 		})),
 	}));
 

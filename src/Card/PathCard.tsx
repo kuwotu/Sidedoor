@@ -1,4 +1,3 @@
-import { monthsOrYears } from "../helpers/helper";
 import type { PathCard } from "../types";
 import {
 	PathCardContainer,
@@ -30,8 +29,11 @@ export function PathCard({
 					<CurrentRoleInfo>
 						<>
 							<p>
-								{currentRole[0].jobTitle} -{" "}
-								{monthsOrYears(currentRole[0].yearsInRole)} in the role
+								{currentRole[0].jobTitle} - {currentRole[0].timeInRole.years}
+								{currentRole[0].timeInRole.years === 1 ? "yr" : "yrs"}{" "}
+								{currentRole[0].timeInRole.months}{" "}
+								{currentRole[0].timeInRole.months === 1 ? "month" : "months"} in
+								the role
 							</p>
 						</>
 					</CurrentRoleInfo>
@@ -39,11 +41,15 @@ export function PathCard({
 			</CardProfile>
 			<CardJourneyContainer>
 				{sortJobsByDate?.map((role) => {
-					console.log(`${role.jobTitle}`, role.yearsInRole);
 					return (
 						<CardJourney>
 							<p>{role.jobTitle}</p>
-							<p>({monthsOrYears(role.yearsInRole)})</p>
+							<p>
+								{role.timeInRole.years > 0 &&
+									`${role.timeInRole.years} ${role.timeInRole.years === 1 ? "yr" : "yrs"} `}
+								{role.timeInRole.months > 0 &&
+									`${role.timeInRole.months}  ${role.timeInRole.years === 1 ? "month" : "months"}`}
+							</p>
 						</CardJourney>
 					);
 				})}
