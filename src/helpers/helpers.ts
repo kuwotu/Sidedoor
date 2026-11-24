@@ -14,7 +14,3 @@ export const yearsAndMonthsInRole = (
 
 	return { years, months };
 };
-
-// improve the months calculator - use difference in month not milliseconds difference
-// write tests for helpers
-// Show months and years for roles

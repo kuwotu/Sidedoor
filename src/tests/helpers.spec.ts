@@ -1,7 +1,16 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
 import { yearsAndMonthsInRole } from "../helpers/helpers";
 
 describe("yearsAndMonthsInRole", () => {
+	beforeEach(() => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date("2026-09-01"));
+	});
+
+	afterEach(() => {
+		vi.useRealTimers();
+	});
+
 	it("should return 0 years and 5 months for Jan to Jun same year", () => {
 		expect(yearsAndMonthsInRole("2018-01-01", "2018-06-01")).toEqual({
 			years: 0,
@@ -18,6 +27,12 @@ describe("yearsAndMonthsInRole", () => {
 		expect(yearsAndMonthsInRole("2018-01-01", "2021-01-31")).toEqual({
 			years: 3,
 			months: 0,
+		});
+	});
+	it("should return 6 years and 8 months for Jan 2020 to today", () => {
+		expect(yearsAndMonthsInRole("2020-01-01", null)).toEqual({
+			years: 6,
+			months: 8,
 		});
 	});
 });
